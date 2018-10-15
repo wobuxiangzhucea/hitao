@@ -11,7 +11,7 @@ public interface GoodsMapper {
 	 * @param map
 	 * @return
 	 */
-	List<ShopGoods> pageData(Map<String, Object> map);
+	List<ShopGoods> pageData();
 	/**
 	 * 添加商品
 	 * @param shopGoods

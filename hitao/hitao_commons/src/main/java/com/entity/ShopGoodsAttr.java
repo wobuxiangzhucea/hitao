@@ -39,7 +39,7 @@ public class ShopGoodsAttr implements Serializable {
     /**
      * 修改时间
      */
-    private Date updatedTiime;
+    private Date updatedTime;
 
     public Integer getGoodsId() {
         return goodsId;
@@ -89,12 +89,12 @@ public class ShopGoodsAttr implements Serializable {
         this.createdTime = createdTime;
     }
  
-    public Date getUpdatedTiime() {
-        return updatedTiime;
+    public Date getUpdatedTime() {
+        return updatedTime;
     }
 
     public void setUpdatedTiime(Date updatedTiime) {
-        this.updatedTiime = updatedTiime;
+        this.updatedTime = updatedTiime;
     }
  
 
@@ -108,7 +108,7 @@ public class ShopGoodsAttr implements Serializable {
         ", attrValue=" + attrValue +
         ", isDel=" + isDel +
         ", createdTime=" + createdTime +
-        ", updatedTiime=" + updatedTiime +
+        ", updatedTiime=" + updatedTime +
         "}";
     }
 }

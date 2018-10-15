@@ -28,7 +28,7 @@ public class GoodsMapperTest {
 		Map<String, Object> map=new HashMap<>();
 		map.put("page", 1);
 		map.put("limit", 5);
-		List<ShopGoods> goods=goodsMapper.pageData(map);
+		List<ShopGoods> goods=goodsMapper.pageData();
 		System.out.println(goods);
 	}
 	/**

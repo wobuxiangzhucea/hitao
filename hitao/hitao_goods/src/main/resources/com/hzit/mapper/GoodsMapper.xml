@@ -5,8 +5,8 @@
 <mapper namespace="com.hzit.mapper.GoodsMapper">
     
  	 <!-- 分页查询数据-->
- 	 <select id="pageData" resultMap="goodsMap" parameterType="map">
- 	 SELECT <include refid="mysql"></include> FROM shop_goods  limit #{page},#{limit}
+ 	 <select id="pageData" resultMap="goodsMap" >
+ 	 SELECT <include refid="mysql"></include> FROM shop_goods  
  	 </select>
 	<!-- 增加数据 -->
 	<insert id="addGood" parameterType="com.entity.ShopGoods">
