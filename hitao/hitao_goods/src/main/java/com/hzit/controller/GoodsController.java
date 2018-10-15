@@ -21,4 +21,9 @@ public class GoodsController {
     public ServerResponse<PageUtil<List<ShopGoods>>> goods(int page,int limit){
     	return service.page(page, limit);
     }
+    @GetMapping("/deleteGoods")
+    @ResponseBody
+    public ServerResponse<Integer> deleteGoods(int goodsId){
+    	return service.deleteGoods(goodsId);
+    }
 }
