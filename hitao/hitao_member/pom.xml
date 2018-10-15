@@ -6,4 +6,17 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>hitao_member</artifactId>
+  	<!--子级项目所特有的jar包  -->
+  	<dependencies>
+  	<!-- 引入公共项目 -->
+  	<dependency>
+  	<!-- 公司信息 -->
+  	<groupId>com.hzit.hitao</groupId>
+  	<!-- 工具包项目名 -->
+  	  <artifactId>hitao_commons</artifactId>
+  	  <!-- 版本号 -->
+  <version>${project.version}</version>	    
+</dependency>
+  	</dependencies>
+  	
 </project>
