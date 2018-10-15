@@ -4,31 +4,33 @@ import java.util.List;
 import java.util.Map;
 
 import com.entity.ShopMember;
+import com.utils.PageUtil;
+import com.utils.ServerResponse;
 
 public interface MemberService {
 	/**
 	 * 通过会员ID查询
 	 */
-	public ShopMember memberById(int memberId);
+	public ServerResponse<ShopMember> memberById(int memberId);
 	/**
 	 * 通过会员ID删除
 	 */
-	public int memberIsDel(int memberId,int isDel);
+	public ServerResponse memberIsDel(int memberId,int isDel);
 	/**
 	 * 查询分页查询会员
 	 * @param map
 	 * @return
 	 */
-	List<ShopMember> pageData(Map<String, Object> map);
+	public ServerResponse<PageUtil<List<ShopMember>>> pageData(int page,int limit);
 	
 	/**
 	 * 添加会员
 	 * @param shopMember
 	 * @return
 	 */
-	public int addMember(ShopMember shopMember);
+	public ServerResponse addMember(ShopMember shopMember);
 	/**
 	 * 根据ID修改数据
 	 */
-	public int updateById(ShopMember shopMember);
+	public ServerResponse updateById(ShopMember shopMember);
 }

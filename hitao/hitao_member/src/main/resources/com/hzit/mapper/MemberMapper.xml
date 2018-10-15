@@ -4,12 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hzit.mapper.MemberMapper">
 	<!-- 通过会员ID查询 -->
-	<select id="menberById" resultMap="shopMember" parameterType="int">
+	<select id="memberById" resultMap="shopMember" parameterType="int">
 	SELECT <include refid="memberData"></include> from shop_member where  member_id=#{memberId}
 	</select>
 	<!-- 分页查询 -->
-	<select id="pageData"  resultMap="shopMember"  parameterType="int">
-	 SELECT <include refid="memberData"></include> FROM shop_member  limit #{page},#{limit}
+	<select id="pageData"  resultMap="shopMember"  >
+	 SELECT <include refid="memberData"></include> FROM shop_member  
 	</select>
 	<!-- 逻辑删除数据 -->
 	<update id="memberIsDel" parameterType="com.entity.ShopMember">

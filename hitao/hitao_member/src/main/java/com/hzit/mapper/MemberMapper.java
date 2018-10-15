@@ -24,7 +24,7 @@ public interface MemberMapper {
 	 * @param map
 	 * @return
 	 */
-	List<ShopMember> pageData(Map<String, Object> map);
+	List<ShopMember> pageData();
 	/**
 	 * 添加会员
 	 * @param shopMember
