@@ -1,5 +1,6 @@
 package com.hzit.service.impl;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hzit.mapper.MemberMapper;
 import com.hzit.service.MemberService;
+import com.utils.JwtTokenUtil;
 import com.utils.Md5Util;
 import com.utils.PageUtil;
 import com.utils.ServerResponse;
@@ -74,9 +76,20 @@ public class MemberServiceImpl implements MemberService{
 	public ServerResponse<String> checkLogin(String memberName,String memgberpassword) {
 		ShopMember shopMember=new ShopMember();
 		shopMember.setMemberName(memberName);
-		
 		shopMember.setPasswordSalt(memgberpassword);
-		return null;
+		ShopMember sm=searchShopMember(shopMember);
+		if(sm==null) {
+			return ServerResponse.createByErrorMessage("账号/密码错误");
+		}else {
+			String memberId=sm.getMemberId().toString();
+			String token=null;
+			try {
+				token = JwtTokenUtil.createToken(memberName, memberId);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			return ServerResponse.createBySuccess("登录成功", token);
+		}
 	}
 	@Override
 	public ShopMember searchShopMember(ShopMember shopMember) {
