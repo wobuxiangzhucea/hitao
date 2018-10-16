@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.mapper.ShopPaymentMapper"> 
+	<!-- 查找所有支付方式 -->
+	<select id="findShopPayments" resultMap="ShopPayment">
+		SELECT 
+		<include refid="payment"></include> 
+		from shop_payment		
+    </select>
+    <!-- 增加支付方式-->
+    <insert id="addShopPayment" parameterType="com.entity.ShopPayment">
+    	insert into shop_payment
+    	(<include refid="payment2"></include>)
+    	values 
+    	(#{paymentCode},#{paymentName},#{paymentConfig},#{paymentState},#{isDel},#{createdTime});
+    </insert>
+    <!-- 根据id修改支付方式 -->
+    <update id="updateShopPayment" parameterType="com.entity.ShopPayment">
+    	update shop_payment set 
+    	payment_id=#{paymentId},payment_code=#{paymentCode},payment_name=#{paymentName},payment_config=#{paymentConfig},payment_state=#{paymentState},
+    	is_del=#{isDel},updated_time=#{updatedTime} 	
+    	where payment_id=#{paymentId};
+    </update>
+    <!-- 根据id删除支付方式 -->
+    <delete id="deleteShopPayment" parameterType="integer">
+    	delete from shop_payment where payment_id=#{paymentId};
+    </delete>
+   <resultMap type="com.entity.ShopPayment" id="ShopPayment">
+  	<id column="payment_id" property="paymentId"/>
+  	<result column="payment_code" property="paymentCode"/>
+  	<result column="payment_name" property="paymentName"/> 
+  	<result column="payment_config" property="paymentConfig"/>
+	<result column="payment_state" property="paymentState" />
+	<result column="is_del" property="isDel" />
+	<result column="created_time" property="createdTime" />
+	<result column="updated_time" property="updatedTime" />		
+  </resultMap>
+  <sql id="payment">
+  	payment_id,payment_code,payment_name,payment_config,payment_state,is_del,created_time,updated_time
+  </sql>
+  <sql id="payment2">
+  	payment_code,payment_name,payment_config,payment_state,is_del,created_time
+  </sql>
+</mapper>
