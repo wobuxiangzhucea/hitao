@@ -6,4 +6,25 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>hitao_order</artifactId>
+  <dependencies>
+  	<!-- 引入公共项目 -->
+  	 <dependency>
+  	 	<!-- 公司信息 -->
+  		<groupId>com.hzit.hitao</groupId>
+  		<!-- hitao_commons 项目 -->
+  		<artifactId>hitao_commons</artifactId>
+  		<!-- hitao_commons项目版本号 -->
+  		<version>${project.version}</version>
+  	</dependency>
+  	 <dependency>
+  	 	<groupId>org.springframework.boot</groupId>
+  	 	<artifactId>spring-boot-starter-test</artifactId>
+  	 </dependency>
+  	 <!-- springboot与pagehelper集成包 -->
+        <dependency>
+		    <groupId>com.github.pagehelper</groupId>
+		    <artifactId>pagehelper-spring-boot-starter</artifactId>
+		    <version>1.2.5</version>
+		</dependency>
+  </dependencies>
 </project>

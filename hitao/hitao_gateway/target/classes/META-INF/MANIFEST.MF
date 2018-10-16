@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: hitao_gateway
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: ￦ﾯﾛ
+Built-By: Administrator
 Implementation-Vendor-Id: com.hzit.hitao
-Build-Jdk: 1.8.0_172
+Build-Jdk: 1.8.0_73
 Implementation-URL: http://projects.spring.io/spring-boot/hitao/hitao_
  gateway/
 Created-By: Maven Integration for Eclipse

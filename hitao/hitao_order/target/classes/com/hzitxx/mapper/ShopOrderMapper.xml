@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzitxx.mapper.ShopOrderMapper"> 
+	<!-- 查询所有订单 -->
+	<select id="findOrders" resultMap="shopOrder">
+		SELECT 
+		<include refid="order"></include> 
+		from shop_order 
+    </select>
+    <!-- 增加订单 -->
+    <insert id="addOrder" parameterType="com.entity.ShopOrder">
+    	insert into shop_order
+    	(<include refid="order2"></include>)
+    	values 
+    	(#{orderSn},#{paySn},#{buyerId},#{buyerName},#{buyerEmail},#{addTime},#{paymentCode},
+    	#{paymentTime},#{finnshedTime},#{goodsAmount},#{orderAmount},#{pdAmount},#{shippingFee},#{evaluationState},
+    	#{orderState},#{refundState},#{lockState},#{refundAmount},#{delayTime},#{shippingCode},#{isDel},#{createdTime});
+    </insert>
+    <!-- 修改订单 -->
+    <update id="updateOrder" parameterType="com.entity.ShopOrder">
+    	update shop_order set 
+    	order_sn=#{orderSn},pay_sn=#{paySn},buyer_id=#{buyerId},buyer_name=#{buyerName},buyer_email=#{buyerEmail},
+    	add_time=#{addTime},payment_code=#{paymentCode},payment_time=#{paymentTime},finnshed_time=#{finnshedTime},
+    	goods_amount=#{goodsAmount},order_amount=#{orderAmount},pd_amount=#{pdAmount},shipping_fee=#{shippingFee},
+    	evaluation_state=#{evaluationState},order_state=#{orderState},refund_state=#{refundState},lock_state=#{refundAmount},
+    	refund_amount=#{refundAmount},delay_time=#{delayTime},shipping_code=#{shippingCode},is_del=#{isDel},
+    	updated_time=#{updatedTime}
+    	where order_id=#{orderId};
+    </update>
+    <delete id="deleteOrder" parameterType="integer">
+    	delete from shop_order where order_id=#{orderId};
+    </delete>
+   <resultMap type="com.entity.ShopOrder" id="shopOrder">
+  	<id column="order_id" property="orderId"/>
+  	<result column="order_sn" property="orderSn"/>
+  	<result column="pay_sn" property="paySn"/> 
+  	<result column="buyer_id" property="buyerId"/>
+	<result column="buyer_name" property="buyerName" />
+	<result column="buyer_email" property="buyerEmail" />
+	<result column="add_time" property="addTime" />
+	<result column="payment_code" property="paymentCode" />
+	<result column="payment_time" property="paymentTime" />	
+	<result column="finnshed_time" property="finnshedTime" />	
+	<result column="goods_amount" property="goodsAmount" />	
+	<result column="order_amount" property="orderAmount" />	
+	<result column="pd_amount" property="pdAmount" />	
+	<result column="shipping_fee" property="shippingFee" />	
+	<result column="evaluation_state" property="evaluationState" />	
+	<result column="order_state" property="orderState" />	
+	<result column="refund_state" property="refundState" />	
+	<result column="lock_state" property="lockState" />	
+	<result column="refund_amount" property="refundAmount" />	
+	<result column="delay_time" property="delayTime" />	
+	<result column="shipping_code" property="shippingCode" />	
+	<result column="is_del" property="isDel" />	
+	<result column="created_time" property="createdTime" />	
+	<result column="updated_time" property="updatedTime" />	
+  </resultMap>
+  <sql id="order">
+  	order_id,order_sn,pay_sn,buyer_id,buyer_name,buyer_email,add_time,payment_code,payment_time,
+  	finnshed_time,goods_amount,order_amount,pd_amount,shipping_fee,evaluation_state,order_state,
+  	refund_state,lock_state,refund_amount,delay_time,shipping_code,is_del,created_time,updated_time
+  </sql>
+    <sql id="order2">
+  	order_sn,pay_sn,buyer_id,buyer_name,buyer_email,add_time,payment_code,payment_time,
+  	finnshed_time,goods_amount,order_amount,pd_amount,shipping_fee,evaluation_state,order_state,
+  	refund_state,lock_state,refund_amount,delay_time,shipping_code,is_del,created_time
+  </sql>
+</mapper>
