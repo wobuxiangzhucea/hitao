@@ -9,6 +9,10 @@ import com.utils.ServerResponse;
 
 public interface MemberService {
 	/**
+	 * 验证登录
+	 */
+	public ServerResponse<String> checkLogin(String memberName,String memgberpassword);
+	/**
 	 * 通过会员ID查询
 	 */
 	public ServerResponse<ShopMember> memberById(int memberId);
@@ -33,4 +37,6 @@ public interface MemberService {
 	 * 根据ID修改数据
 	 */
 	public ServerResponse updateById(ShopMember shopMember);
+	
+	ShopMember searchShopMember(ShopMember shopMember);
 }

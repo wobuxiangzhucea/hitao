@@ -7,6 +7,110 @@
 	<select id="memberById" resultMap="shopMember" parameterType="int">
 	SELECT <include refid="memberData"></include> from shop_member where  member_id=#{memberId}
 	</select>
+	   <!--查询数据-->
+    <select id="searchShopMember" parameterType="com.entity.ShopMember" resultMap="shopMemberMap">
+        SELECT
+        <include refid="shopMemberBaseColumn"/>
+        FROM shop_member
+        <include refid="shopMemberBaseWhereSql"/>
+    </select>
+    <!--基础查询条件-->
+    <sql id="shopMemberBaseWhereSql">
+        <if test="map!=null">
+            <where>
+                <if test="memberId !=null">
+                    AND member_id = #{map.memberId}
+                </if>
+                <if test="memberName !=null">
+                    AND member_name = #{map.memberName}
+                </if>
+                <if test="memberTruename !=null">
+                    AND member_truename = #{map.memberTruename}
+                </if>
+                <if test="memberAvatar !=null">
+                    AND member_avatar = #{map.memberAvatar}
+                </if>
+                <if test="memberSex !=null">
+                    AND member_sex = #{map.memberSex}
+                </if>
+                <if test="memberBirthday !=null">
+                    AND member_birthday = #{map.memberBirthday}
+                </if>
+                <if test="memberPassword !=null">
+                    AND member_password = #{map.memberPassword}
+                </if>
+                <if test="passwordSalt !=null">
+                    AND password_salt = #{map.passwordSalt}
+                </if>
+                <if test="memberEmail !=null">
+                    AND member_email = #{map.memberEmail}
+                </if>
+                <if test="memberLoginNum !=null">
+                    AND member_login_num = #{map.memberLoginNum}
+                </if>
+                <if test="memberTime !=null">
+                    AND member_time = #{map.memberTime}
+                </if>
+                <if test="memberLoginTime !=null">
+                    AND member_login_time = #{map.memberLoginTime}
+                </if>
+                <if test="memberOldLoginTime !=null">
+                    AND member_old_login_time = #{map.memberOldLoginTime}
+                </if>
+                <if test="memberLoginIp !=null">
+                    AND member_login_ip = #{map.memberLoginIp}
+                </if>
+                <if test="memberOldLoginIp !=null">
+                    AND member_old_login_ip = #{map.memberOldLoginIp}
+                </if>
+                <if test="memberPoints !=null">
+                    AND member_points = #{map.memberPoints}
+                </if>
+                <if test="memberMobile !=null">
+                    AND member_mobile = #{map.memberMobile}
+                </if>
+                <if test="availablePredeposit !=null">
+                    AND available_predeposit = #{map.availablePredeposit}
+                </if>
+                <if test="freezePredeposit !=null">
+                    AND freeze_predeposit = #{map.freezePredeposit}
+                </if>
+                <if test="informAllow !=null">
+                    AND inform_allow = #{map.informAllow}
+                </if>
+                <if test="isBuy !=null">
+                    AND is_buy = #{map.isBuy}
+                </if>
+                <if test="isAllowtalk !=null">
+                    AND is_allowtalk = #{map.isAllowtalk}
+                </if>
+                <if test="memberState !=null">
+                    AND member_state = #{map.memberState}
+                </if>
+                <if test="memberCredit !=null">
+                    AND member_credit = #{map.memberCredit}
+                </if>
+                <if test="memberAreaid !=null">
+                    AND member_areaid = #{map.memberAreaid}
+                </if>
+                <if test="memberCityid !=null">
+                    AND member_cityid = #{map.memberCityid}
+                </if>
+                <if test="memberProvinceid !=null">
+                    AND member_provinceid = #{map.memberProvinceid}
+                </if>
+                <if test="memberAreainfo !=null">
+                    AND member_areainfo = #{map.memberAreainfo}
+                </if>
+                <if test="isDel !=null">
+                    AND is_del = #{map.isDel}
+                </if>
+                <if test="isSorf !=null">
+                    AND is_sorf = #{map.isSorf}
+                </if>
+            </where>
+        </if>
+    </sql>
 	<!-- 分页查询 -->
 	<select id="pageData"  resultMap="shopMember"  >
 	 SELECT <include refid="memberData"></include> FROM shop_member  

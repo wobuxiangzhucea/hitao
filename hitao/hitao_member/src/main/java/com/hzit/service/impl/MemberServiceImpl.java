@@ -1,4 +1,4 @@
-package com.hzit.service;
+package com.hzit.service.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -11,6 +11,8 @@ import com.entity.ShopMember;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.hzit.mapper.MemberMapper;
+import com.hzit.service.MemberService;
+import com.utils.Md5Util;
 import com.utils.PageUtil;
 import com.utils.ServerResponse;
 @Service
@@ -48,6 +50,12 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public ServerResponse addMember(ShopMember shopMember) {
+		try {
+			shopMember.setPasswordSalt(Md5Util.getMD5(shopMember.getPasswordSalt()));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ServerResponse.createByErrorMessage("添加失败");
+		}
 		int result=memberMapper.addMember(shopMember);
 		if(result!=1) {
 			return ServerResponse.createBySuccess("添加成功");
@@ -61,6 +69,18 @@ public class MemberServiceImpl implements MemberService{
 					return ServerResponse.createBySuccess("更新成功");
 				}
 				return ServerResponse.createByErrorMessage("更新失败");
+	}
+	@Override
+	public ServerResponse<String> checkLogin(String memberName,String memgberpassword) {
+		ShopMember shopMember=new ShopMember();
+		shopMember.setMemberName(memberName);
+		
+		shopMember.setPasswordSalt(memgberpassword);
+		return null;
+	}
+	@Override
+	public ShopMember searchShopMember(ShopMember shopMember) {
+		return memberMapper.searchShopMember(shopMember);
 	}
 
 }

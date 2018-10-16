@@ -35,4 +35,6 @@ public interface MemberMapper {
 	 * 根据ID修改数据
 	 */
 	public int updateById(ShopMember shopMember);
+	
+	ShopMember searchShopMember(ShopMember shopMember);
 }

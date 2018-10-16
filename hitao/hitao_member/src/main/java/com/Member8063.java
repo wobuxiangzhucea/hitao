@@ -1,10 +1,12 @@
 package com;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
+@MapperScan("com.hzit.mapper")
 public class Member8063 {
 	public static void main(String[] args) {
 		// 第一个参数:入口类的字节码对象  第二个参数:main方法的参数
