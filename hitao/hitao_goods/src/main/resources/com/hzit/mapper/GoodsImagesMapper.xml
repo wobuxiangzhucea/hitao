@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzit.mapper.GoodsImagesMapper">
+    
+ 	 <!-- 分页查询数据-->
+ 	 <select id="getData" resultMap="goodsImageMap">
+ 	 SELECT <include refid="mysql"></include> FROM shop_goods_images
+ 	 </select>
+	<!-- 增加数据 -->
+	<insert id="addGoodImages" parameterType="com.entity.ShopGoodsImages">
+	insert into shop_goods_images (goods_id,color_id,goods_image,goods_image_sort,is_default) values(#{goodsId},#{colorId},#{goodsImage},#{goodsImageSort},#{isDefault})
+	</insert>
+	<!-- 修改商品信息 -->
+	<update id="updateGoodsImages" parameterType="com.entity.ShopGoodsImages">
+	UPDATE shop_goods_images set goods_id=#{goodsId},color_id=#{colorId},goods_image=#{goodsImage},goods_image_sort=#{goodsImageSort},is_default=#{isDefault} WHERE goods_image_id=#{goodsImageId}
+	</update>
+	<!-- 物理删除数据 -->
+	<delete id="deleteGoodsImages" parameterType="int">
+	delete from shop_goods_images where goods_image_id=#{goodsImageId}
+	</delete>
+	
+ 	<sql id="mysql">
+ 	goods_image_id,goods_id,color_id,goods_image,goods_image_sort,is_default
+ 	</sql>
+ 	<resultMap type="com.entity.ShopGoodsImages" id="goodsImageMap">
+ 	    <id column="goods_image_id" property="goodsImageId"/>
+ 	    <result column="goods_id" property="goodsId"/>
+ 		<result column="color_id" property="colorId"/>
+ 		<result column="goods_image" property="goodsImage"/>
+ 		<result column="goods_image_sort" property="goodsImageSort"/>
+ 		<result column="is_default" property="isDefault"/>
+ 	</resultMap>
+</mapper>

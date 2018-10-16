@@ -9,11 +9,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.entity.ShopGoodsAttrGroupTemp;
-import com.hzit.GoodsApplication8762;
+import com.hzit.GoodsApplication8062;
 import com.hzit.mapper.GoodsAttrGroupTempMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes=GoodsApplication8762.class)
+@SpringBootTest(classes=GoodsApplication8062.class)
 public class GoodsAttrGroupTempTest {
 	@Autowired
 	private GoodsAttrGroupTempMapper goodsAttrGroupTempMapper;

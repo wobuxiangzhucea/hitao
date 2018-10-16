@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzit.mapper.GoodsCategoryMapper">
+    
+ 	 <!-- 分页查询数据-->
+ 	 <select id="getData" resultMap="goodsCategoryMap">
+ 	 SELECT <include refid="mysql"></include> FROM shop_goods_category
+ 	 </select>
+	<!-- 增加数据 -->
+	<insert id="addGoodCategory" parameterType="com.entity.ShopGoodsCategory">
+	insert into shop_goods_category (cat_name,parent_id,sort,icon_image,level,keywords,description,created_time,updated_time) values(#{catName},#{parentId},#{sort},#{iconImage},#{level},#{keywords},#{description},#{createdTime},#{updatedTime})
+	</insert>
+	<!-- 修改商品信息 -->
+	<update id="updateGoodsCategory" parameterType="com.entity.ShopGoodsCategory">
+	UPDATE shop_goods_category set cat_name=#{catName},parent_id=#{parentId},sort=#{sort},icon_image=#{iconImage},level=#{level},keywords=#{keywords},description=#{description},created_time=#{createdTime},updated_time=#{updatedTime} WHERE cat_id=#{catId}
+	</update>
+	<!-- 物理删除数据 -->
+	<delete id="deleteGoodsCategory" parameterType="int">
+	delete from shop_goods_category where cat_id=#{catId}
+	</delete>
+	
+	<!-- 逻辑删除 -->
+	<update id="isDel" parameterType="com.entity.ShopGoodsAttr">
+	update shop_goods_category set is_del=#{isDel} where cat_id=#{catId}
+	</update>
+	
+ 	<sql id="mysql">
+ 	cat_id,cat_name,parent_id,sort,icon_image,level,keywords,description,is_del,created_time,updated_time
+ 	</sql>
+ 	<resultMap type="com.entity.ShopGoodsCategory" id="goodsCategoryMap">
+ 	    <id column="cat_id" property="catId"/>
+ 	    <result column="cat_name" property="catName"/>
+ 	     <result column="parent_id" property="parentId"/>
+ 	     <result column="sort" property="sort"/>
+ 	     <result column="icon_image" property="iconImage"/>
+ 	     <result column="level" property="level"/>
+ 	     <result column="keywords" property="keywords"/>
+ 	     <result column="description" property="description"/>
+ 		<result column="is_del" property="isDel"/>
+ 		<result column="created_time" property="createdTime"/>
+ 		<result column="updated_time" property="updatedTime"/>
+ 	</resultMap>
+</mapper>

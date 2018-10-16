@@ -10,25 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.entity.ShopGoodsAttrTemplate;
-import com.hzit.service.GoodsAttrTempService;
+import com.entity.ShopGoodsCategory;
+import com.hzit.service.GoodsCategoryService;
 import com.utils.PageUtil;
 import com.utils.ServerResponse;
 
 @RestController
-@RequestMapping("/goodsAttrTemp")
-public class GoodsAttrTempController {
-
+@RequestMapping("/goodsCategory")
+public class GoodsCategoryController {
 	@Autowired
-	private GoodsAttrTempService service;
-	/**
-	 * 分页查询
-	 * @param page
-	 * @param limit
-	 * @return
-	 */
+	private GoodsCategoryService service;
 	@GetMapping("/page")
-	public ServerResponse<PageUtil<List<ShopGoodsAttrTemplate>>> page(@RequestParam(value="page" ,defaultValue="1")int page,@RequestParam(value="limit" ,defaultValue="10")int limit) {
+	public ServerResponse<PageUtil<List<ShopGoodsCategory>>> page(@RequestParam(value="page" ,defaultValue="1")int page,@RequestParam(value="limit" ,defaultValue="10")int limit){
 		return service.page(page, limit);
 	}
 	/**
@@ -37,8 +30,9 @@ public class GoodsAttrTempController {
 	    * @return
 	    */
 	   @PostMapping("/add")
-	   public ServerResponse<Integer> add(@RequestBody ShopGoodsAttrTemplate shopGoodsAttrTemplate){
-		   return  service.addGoodAttrTemp(shopGoodsAttrTemplate);
+	   public ServerResponse<Integer> add(@RequestBody ShopGoodsCategory shopGoodsCategory){
+		   //System.out.println(shopGoodsImages);
+		   return  service.addGoodCategory(shopGoodsCategory);
 	   }
 	   /**
 	    * 编辑
@@ -46,8 +40,8 @@ public class GoodsAttrTempController {
 	    * @return
 	    */
 	   @PostMapping("/update")
-	   public ServerResponse<Integer> update(@RequestBody ShopGoodsAttrTemplate shopGoodsAttrTemplate){
-		   return service.updateGoodAttrTemp(shopGoodsAttrTemplate);
+	   public ServerResponse<Integer> update(@RequestBody ShopGoodsCategory shopGoodsCategory){
+		   return service.updateGoodsCategory(shopGoodsCategory);
 	   }
 	   /**
 	    * 删除
@@ -55,7 +49,7 @@ public class GoodsAttrTempController {
 	    * @return
 	    */
 	   @PostMapping("/delete")
-	   public ServerResponse<Integer> delete(int attrId){
-		   return service.deleteGoodsAttrTemp(attrId);
+	   public ServerResponse<Integer> delete(int catId){
+		   return service.deleteGoodsCategory(catId);
 	   }
 }

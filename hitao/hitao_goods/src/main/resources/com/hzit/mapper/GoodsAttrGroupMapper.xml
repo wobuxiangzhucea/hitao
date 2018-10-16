@@ -10,11 +10,11 @@
  	 </select>
 	<!-- 增加数据 -->
 	<insert id="addGoodAttrGroup" parameterType="com.entity.ShopGoodsAttrGroup">
-	insert into shop_goods_attr_group (group_name,is_del,created_time,updated_time) values(#{groupName},#{isDel},#{createdTime},#{updatedTime})
+	insert into shop_goods_attr_group (group_name,created_time,updated_time) values(#{groupName},#{createdTime},#{updatedTime})
 	</insert>
 	<!-- 修改商品信息 -->
 	<update id="updateGoodAttrGroup" parameterType="com.entity.ShopGoodsAttrGroup">
-	UPDATE shop_goods_attr_group set group_name=#{groupName},is_del=#{isDel},created_time=#{createdTime},updated_time=#{updatedTime} WHERE group_id=#{groupId}
+	UPDATE shop_goods_attr_group set group_name=#{groupName},created_time=#{createdTime},updated_time=#{updatedTime} WHERE group_id=#{groupId}
 	</update>
 	<!-- 物理删除数据 -->
 	<delete id="deleteGoodsAttrGroup" parameterType="int">

@@ -13,9 +13,9 @@ import com.github.pagehelper.PageHelper;
 @SpringBootApplication
 @EnableDiscoveryClient
 @MapperScan("com.hzit.mapper")
-public class GoodsApplication8762 {
+public class GoodsApplication8062 {
  public static void main(String[] args) {
-	 SpringApplication.run(GoodsApplication8762.class, args);
+	 SpringApplication.run(GoodsApplication8062.class, args);
  
  }
 	//配置mybatis的分页插件pageHelper

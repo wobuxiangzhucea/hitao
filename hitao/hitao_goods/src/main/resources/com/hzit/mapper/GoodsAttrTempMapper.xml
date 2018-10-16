@@ -10,11 +10,11 @@
  	 </select>
 	<!-- 增加数据 -->
 	<insert id="addGoodAttrTemp" parameterType="com.entity.ShopGoodsAttrTemplate">
-	insert into shop_goods_attr_template (cat_id,attr_value,is_del,created_time,updated_time) values(#{catId},#{attrValue},#{isDel},#{createdTime},#{updatedTime})
+	insert into shop_goods_attr_template (cat_id,attr_value,created_time,updated_time) values(#{catId},#{attrValue},#{createdTime},#{updatedTime})
 	</insert>
 	<!-- 修改商品信息 -->
 	<update id="updateGoodAttrTemp" parameterType="com.entity.ShopGoodsAttrTemplate">
-	UPDATE shop_goods_attr_template set cat_id=#{catId},attr_value=#{attrValue},is_del=#{isDel},created_time=#{createdTime},updated_time=#{updatedTime} WHERE attr_id=#{attrId}
+	UPDATE shop_goods_attr_template set cat_id=#{catId},attr_value=#{attrValue},created_time=#{createdTime},updated_time=#{updatedTime} WHERE attr_id=#{attrId}
 	</update>
 	<!-- 物理删除数据 -->
 	<delete id="deleteGoodsAttrTemp" parameterType="int">
