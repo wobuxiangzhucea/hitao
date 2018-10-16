@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzit.mapper.RoleMapper">
+	<sql id="baseInfo">
+		role_name,role_description,created_time,created_by,updated_time,updated_by,is_del
+	</sql>
+  	
+  	<!-- 增加系统角色  -->
+  	<insert id="addRole" parameterType="com.entity.ShopRole">
+  		insert into shop_role(<include refid="baseInfo"></include>) values(#{roleName},#{roleDescription},#{createdTime},
+  		#{createdBy},#{updatedTime},#{updatedBy},#{isDel})
+  	</insert>
+  	
+  	<!-- 删除系统角色 -->
+  	<delete id="delRole" parameterType="integer">
+  		delete from shop_role where role_id=#{roleId}
+  	</delete>
+  	
+  	<!-- 逻辑删除系统角色 -->
+  	<update id="tombRole">
+  		update shop_role set is_del=#{isDel} where role_id=#{roleId}
+  	</update>
+  	
+  	<!-- 修改系统角色 -->
+  	<update id="updateRole" parameterType="com.entity.ShopRole">
+  		update shop_role set role_name=#{roleName},role_description=#{roleDescription},
+  		updated_time=#{updatedTime},updated_by=#{updatedBy},is_del=#{isDel} where role_id=#{roleId}
+  	</update>
+  	
+  	<!-- 动态查询系统角色 -->
+  	<select id="findRole" parameterType="map" resultMap="role">
+  		select role_id,<include refid="baseInfo"></include> from shop_role
+  		<where>
+  			<if test="role_id!=null">
+  				role_id=#{roleId}
+  			</if>
+  			<if test="role_name!=null">
+  				and role_name like concat(#roleName,'%')
+  			</if>
+  		</where>
+  	</select>
+  	<resultMap id="role" type="com.entity.ShopRole">
+  		<id column="role_id" property="roleId"/>
+  		<result column="role_name" property="roleName"/>
+  		<result column="role_description" property="roleDescription"/>
+  		<result column="created_time" property="createdTime"/>
+  		<result column="created_by" property="createdBy"/>
+  		<result column="updated_time" property="updatedTime"/>
+  		<result column="updated_by" property="updatedBy"/>
+  		<result column="is_del" property="isDel"/>
+  	</resultMap>
+  	
+  	
+</mapper>
