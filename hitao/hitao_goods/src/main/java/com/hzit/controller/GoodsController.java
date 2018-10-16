@@ -30,6 +30,7 @@ public class GoodsController {
     @GetMapping("/page")
     public ServerResponse<PageUtil<List<ShopGoods>>> page(@RequestParam(value="page" ,defaultValue="1")int page,@RequestParam(value="limit" ,defaultValue="10")int limit){
     	return service.page(page, limit);
+    	
     }
     /**
      * 添加商品信息
