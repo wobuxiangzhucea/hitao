@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzit.mapper.AdminLogMapper">
+	<sql id="baseInfo">
+  		content,createtime,admin_name,admin_id,ip,is_del,created_time,updated_time
+  	</sql>
+  	
+  	<!-- 增加日志 -->
+	<insert id="addAdminLog" parameterType="com.entity.ShopAdminLog">
+		insert into shop_admin_log(<include refid="baseInfo"></include>) values(#{content},#{createtime},#{adminName},#{adminId},#{ip},#{isDel},
+		#{createdTime},#{updatedTime})
+	</insert>
+  	
+  	<!-- 删除日志 -->
+  	<delete id="delAdminLog" parameterType="integer">
+  		delete from shop_admin_log where log_id=#{logId}
+  	</delete>
+  	
+  	<!-- 逻辑删除日志 -->
+  	<update id="tombAdminLog" parameterType="map">
+  		update shop_admin_log set is_del=#{isDel} where log_id=#{logId}
+  	</update>
+  	
+  	<!-- 修改日志 -->
+  	<update id="updateAdminLog" parameterType="com.entity.ShopAdminLog">
+  		update shop_admin_log set content=#{content},createtime=#{createtime},admin_name=#{adminName},admin_id=#{adminId},ip=#{ip},
+  		is_del=#{isDel},updated_time=#{updatedTime} where log_id=#{logId}
+  	</update>
+  	
+  	<!-- 动态查询日志 -->
+  	<select id="findAdminLog" parameterType="map" resultMap="log">
+  		select log_id,<include refid="baseInfo"></include> from shop_admin_log
+  		<where>
+  			<if test="logId!=null">
+  				log_id=#{logId}
+  			</if>
+  		</where>
+  	</select>
+  	
+  	<resultMap id="log" type="com.entity.ShopAdminLog">
+  		<id column="log_id" property="logId"/>
+  		<result column="content" property="content"/>
+  		<result column="createtime" property="createtime"/>
+  		<result column="admin_name" property="adminName"/>
+  		<result column="admin_id" property="adminId"/>
+  		<result column="ip" property="ip"/>
+  		<result column="is_del" property="isDel"/>
+  		<result column="created_time" property="createdTime"/>
+  		<result column="updated_time" property="updatedTime"/>
+  	</resultMap>
+  	
+  	
+</mapper>

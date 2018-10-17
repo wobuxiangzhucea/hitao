@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzit.mapper.GoodsAttrGroupTempMapper">
+    
+ 	 <!-- 分页查询数据-->
+ 	 <select id="getData" resultMap="goodsAttrGroupTempMap">
+ 	 SELECT <include refid="mysql"></include> FROM shop_goods_attr_group_temp
+ 	 </select>
+	<!-- 增加数据 -->
+	<insert id="addGoodAttrGroupTemp" parameterType="com.entity.ShopGoodsAttrGroupTemp">
+	insert into shop_goods_attr_group_temp (attr_id,attr_group_id) values(#{attrId},#{attrGroupId})
+	</insert>
+	<!-- 修改商品信息 -->
+	<update id="updateGoodAttrGroupTemp" parameterType="com.entity.ShopGoodsAttrGroupTemp">
+	UPDATE shop_goods_attr_group_temp set attr_id=#{attrId},attr_group_id=#{attrGroupId} WHERE id=#{id}
+	</update>
+	<!-- 物理删除数据 -->
+	<delete id="deleteGoodsAttrGroupTemp" parameterType="int">
+	delete from shop_goods_attr_group_temp where id=#{id}
+	</delete>
+		
+ 	<sql id="mysql">
+ 	id,attr_id,attr_group_id
+ 	</sql>
+ 	<resultMap type="com.entity.ShopGoodsAttrGroupTemp" id="goodsAttrGroupTempMap">
+ 	    <id column="id" property="id"/>
+ 	   <result column="attr_id" property="attrId"/>
+ 		<result column="attr_group_id" property="attrGroupId"/>
+ 	</resultMap>
+</mapper>

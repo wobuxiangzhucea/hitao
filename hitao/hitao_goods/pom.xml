@@ -6,4 +6,11 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>hitao_goods</artifactId>
+  <dependencies>
+     <dependency>
+				<groupId>com.hzit.hitao</groupId>
+				<artifactId>hitao_commons</artifactId>
+				<version> ${project.version}</version>
+			</dependency>
+  </dependencies>
 </project>
